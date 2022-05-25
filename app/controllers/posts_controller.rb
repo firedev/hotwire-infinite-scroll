@@ -3,7 +3,8 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @pagy, @posts = pagy_countless(Post.all, items: 5)
+    render "index_infinite" if params[:page]
   end
 
   # GET /posts/1 or /posts/1.json

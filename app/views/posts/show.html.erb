@@ -2,6 +2,10 @@
 
 <%= render @post %>
 
+<div id="comments">
+  <%= render @comments %>
+</div>
+
 <div>
   <%= link_to "Edit this post", edit_post_path(@post) %> |
   <%= link_to "Back to posts", posts_path %>
