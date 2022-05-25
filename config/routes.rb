@@ -5,5 +5,6 @@ Rails.application.routes.draw do
       post :index
     end
   end
+  get "lazy", to: "lazy#index"
   root "posts#index"
 end

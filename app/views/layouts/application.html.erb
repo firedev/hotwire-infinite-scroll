@@ -11,6 +11,12 @@
   </head>
 
   <body>
+    <details>
+      <summary>Lazy Load</summary>
+      <%= turbo_frame_tag 'lazy_load', src: lazy_path, loading: :lazy, target: "_top" do %>
+        Loading...
+      <% end %>
+    </details>
     <%= yield %>
   </body>
 </html>
