@@ -3,11 +3,12 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @pagy, @posts = pagy_countless(Post.all, items: 5)
-    respond_to do |format|
-      format.html
-      format.turbo_stream
-    end
+    @cursor = (params[:cursor] || "0").to_i
+    @posts = Post.all.where("id > ?", @cursor).take(PER_PAGE)
+    @next_cursor = @posts.last&.id
+    @more_pages = @next_cursor.present? && @posts.count == PER_PAGE
+
+    render "index_infinite" if params[:cursor]
   end
 
   # GET /posts/1 or /posts/1.json

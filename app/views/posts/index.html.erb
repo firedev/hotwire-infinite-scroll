@@ -4,5 +4,5 @@
 
 <h1>Posts</h1>
 
-<div id="posts"></div>
-<%= turbo_frame_tag "pagination", src: posts_path(format: :turbo_stream), loading: :lazy %>
+<%= render partial: "post", collection: @posts %>
+<%= render partial: "next_page" %>
